@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Stack;
 import java.lang.Exception;
 
-class Tokenizer {
+public class Tokenizer {
   private MaquinaEstado estado;
   private Stack pilhaCaracteres;
 

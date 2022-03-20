@@ -1,6 +1,6 @@
 package tahi.scanner;
 
-class Token {
+public class Token {
 
   private String conteudo;
   private Primitivo classe;

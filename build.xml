@@ -48,7 +48,7 @@
 
     <target name="run">
         <java jar="${file.jar}" fork="true">
-            <arg line="${dir.assets}/exemplo.tahi"/>
+            <arg line="${dir.assets}/ex1.tahi"/>
         </java>
     </target>
 

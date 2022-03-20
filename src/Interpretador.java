@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import tahi.scanner.Tokenizer;
+
 public class Interpretador {
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -13,9 +15,12 @@ public class Interpretador {
             System.exit(0);
         }
         try{
-            System.out.println(args[0]);
+            Tokenizer tok = new Tokenizer();
             BufferedReader reader = new BufferedReader(new FileReader(args[0]));
             String currentLine = reader.readLine();
+            while(currentLine != null) {
+
+            }
             System.out.println(currentLine);
             reader.close();
         }
