@@ -1,0 +1,62 @@
+<project name="Interpretador" basedir=".">
+
+    <property name="version">1.2.3</property>
+    <property name="dir.src">src</property>
+    <property name="dir.build">build</property>
+    <property name="dir.build.classes">${dir.build}/classes</property>
+    <property name="dir.build.jar">${dir.build}/jar</property>
+    <property name="dir.assets">assets</property>
+    <property name="file.jar">${dir.build.jar}/Main.jar</property>
+    <!--<property name="dir.build.javadoc">${dir.build}/javadoc</property>-->
+
+    <path id="projectClasspath">
+        <fileset dir="lib">
+            <include name="**.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="${dir.build}"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${dir.build}"/>
+        <mkdir dir="${dir.build.classes}"/>
+        <mkdir dir="${dir.build.jar}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <echo>Compiling Java source</echo>
+        <javac classpathref="projectClasspath"
+               srcdir="${dir.src}"
+               destdir="${dir.build.classes}" />
+    </target>
+
+    <target name="jar" depends="compile">
+        <echo>Making JAR file</echo>
+        <jar basedir="${dir.build.classes}" file="${file.jar}">
+            <manifest>
+                <attribute name="Package" value="tahi"/>
+                <attribute name="Main-Class" value="tahi.Interpretador"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="runDev" depends="jar">
+        <java jar="${file.jar}" fork="true"/>
+    </target>
+
+    <target name="run">
+        <java jar="${file.jar}" fork="true">
+            <arg line="${dir.assets}/exemplo.tahi"/>
+        </java>
+    </target>
+
+<!--
+    <target name="javadoc">
+        <echo>Making JavaDoc from source</echo>
+
+        <javadoc sourcepath="${dir.src}" destdir="${dir.build.javadoc}"></javadoc>
+    </target>
+-->
+</project>
