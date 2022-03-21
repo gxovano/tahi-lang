@@ -32,6 +32,12 @@ public class Tokenizer {
     return s;
   }
 
+  /**
+   * assss
+   *
+   * @param instrucao 
+   * @return 
+   */
   private List<Token> processar(String instrucao) throws Exception{
     List<Token> lista = new ArrayList<Token>();
     for(int i = 0; i < instrucao.length(); i++) {

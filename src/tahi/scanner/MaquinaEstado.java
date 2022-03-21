@@ -5,7 +5,7 @@ import java.lang.Character;
 public class MaquinaEstado {
 
   private Estado[] estado;
-  private final String operadores = "=+-*/";
+  private final String operadores = "=+-*/><";
   private final String add = "++";
   private final String minus = "--";
   private char previous = ' ';

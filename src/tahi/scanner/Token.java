@@ -4,7 +4,7 @@ public class Token {
 
   private String conteudo;
   private Primitivo classe;
-  private final String keywords = "print,";
+  private final String keywords = "print,func,end,if,else";
 
   public Token() {
     this.conteudo = "";

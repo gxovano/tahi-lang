@@ -5,8 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
+import java.nio.file.Files;
+import java.nio.charset.Charset;
 
 import tahi.scanner.Tokenizer;
+import tahi.scanner.Token;
 
 public class Interpretador {
     public static void main(String[] args) {
@@ -15,16 +21,20 @@ public class Interpretador {
             System.exit(0);
         }
         try{
+            List lista = new ArrayList<List<Token>>();
             Tokenizer tok = new Tokenizer();
-            BufferedReader reader = new BufferedReader(new FileReader(args[0]));
-            String currentLine = reader.readLine();
-            while(currentLine != null) {
-
+            List<String> list = Files.readAllLines(new File(args[0]).toPath(), Charset.defaultCharset() );
+            lista = tok.tokenizer(list);
+            Iterator it = lista.iterator();
+            while(it.hasNext()) {
+                List<Token> lista2 = (List<Token>) it.next();
+                for (Token t : lista2) {
+                    System.out.print(t.getClasse());
+                    System.out.println(" " + t.getConteudo().toString());
+                }
             }
-            System.out.println(currentLine);
-            reader.close();
         }
-        catch (IOException e) {
+        catch (Exception e) {
             System.out.println(e);
         }
         System.exit(0);
