@@ -21,18 +21,21 @@ public class Interpretador {
             System.exit(0);
         }
         try{
-            List lista = new ArrayList<List<Token>>();
             Tokenizer tok = new Tokenizer();
             List<String> list = Files.readAllLines(new File(args[0]).toPath(), Charset.defaultCharset() );
-            lista = tok.tokenizer(list);
+            List lista = tok.tokenizer(list);
             Iterator it = lista.iterator();
             while(it.hasNext()) {
                 List<Token> lista2 = (List<Token>) it.next();
+                System.out.print("\n");
                 for (Token t : lista2) {
                     System.out.print(t.getClasse());
-                    System.out.println(" " + t.getConteudo().toString());
+                    System.out.print(" " + t.getConteudo().toString());
+                    System.out.print(",");
                 }
+                System.out.print("\n");
             }
+            
         }
         catch (Exception e) {
             System.out.println(e);

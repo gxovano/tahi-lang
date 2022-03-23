@@ -4,7 +4,7 @@ public class Token {
 
   private String conteudo;
   private Primitivo classe;
-  private final String keywords = "print,func,end,if,else";
+  private final String keywords = "func,main,end,print,if,else,return";
 
   public Token() {
     this.conteudo = "";
@@ -43,10 +43,20 @@ public class Token {
       this.classe = Primitivo.String;
     }
     else if (avaliado == Estado.Alfabetico) {
-      if(this.keywords.contains(this.getConteudo()))
+      if(this.checkKeyword(this.getConteudo()))
         this.classe = Primitivo.Keyword;
       else
         this.classe = Primitivo.Variavel;
     }
+  }
+
+  private boolean checkKeyword(String conteudo) {
+    String[] kws = this.keywords.split(",");
+    for (String kw : kws) {
+      if(kw.equals(conteudo)) {
+        return true;
+      }
+    }
+    return false;
   }
 }

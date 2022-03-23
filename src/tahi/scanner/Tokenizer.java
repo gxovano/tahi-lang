@@ -7,7 +7,9 @@ import java.util.Stack;
 import java.lang.Exception;
 
 public class Tokenizer {
+  // Instancia maquina de estado de avaliação dos caracteres
   private MaquinaEstado estado;
+  // Instancia a pilha de token 
   private Stack pilhaCaracteres;
 
   public Tokenizer() {
@@ -32,31 +34,27 @@ public class Tokenizer {
     return s;
   }
 
-  /**
-   * assss
-   *
-   * @param instrucao 
-   * @return 
-   */
   private List<Token> processar(String instrucao) throws Exception{
-    List<Token> lista = new ArrayList<Token>();
-    for(int i = 0; i < instrucao.length(); i++) {
-      char c = instrucao.charAt(i);
-      estado.transicao(c);
-      if (estado.ehValido() && !estado.ehFinal()) {
-        this.pilhaCaracteres.push((Character) c);
+    List<Token> lista = new ArrayList<Token>();               // Inicializa a lista de tokens da linha do fonte
+    for(int i = 0; i < instrucao.length(); i++) {             // Para cada caracter da linha, executa as instruções do laço
+      char c = instrucao.charAt(i);                           // -- Lê o caracter da vez na variável c
+      estado.transicao(c);                                    // -- Produz uma transição de estado na máquina de estado com base no caracter
+      if (estado.ehValido() && !estado.ehFinal()) {           // -- Caso o estado seja válido ou final
+        this.pilhaCaracteres.push((Character) c);             // -- -- Coloca o caracter na pilha de caracteres de token
       }
-      else if (estado.ehFinal()) {
-        if(c == '"')
-          this.pilhaCaracteres.push((Character) c);
-        Token t = reconhecer();
-        if(t != null) {
-          lista.add(t);
+      else if (estado.ehFinal()) {                            // -- Caso o estado seja final (o token está completo)
+        if(c == '"')                                          // -- -- Se o último caracter for aspas duplas
+          this.pilhaCaracteres.push((Character) c);           // -- -- -- Coloca as aspas duplas na pilha de caracteres
+        Token t = reconhecer();                               // -- -- Cria um objeto novo do tipo Token com base no resultado da máquina de estado
+        if(t != null) {                                       // -- -- Caso o token não seja inválido (null)
+          if(t.getClasse() != null && t.getConteudo() != null) // 
+            if(t.getClasse() != null)
+              lista.add(t);                                     // -- -- -- Adiciona o token na lista de tokens 
         }
-        if(!Character.isWhitespace(c) && c != '"') {
-          i--;
+        if(!Character.isWhitespace(c) && c != '"') {          // -- -- Se o caracter 
+          i--;                                                // -- -- -- 
         }
-        this.estado.reset();
+        this.estado.reset();                                  // -- -- 
       }
       else if (!estado.ehValido()) {
         throw new Exception(" coluna " + i);
