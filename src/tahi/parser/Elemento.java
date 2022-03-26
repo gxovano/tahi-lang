@@ -10,5 +10,5 @@ public abstract interface Elemento {
      * 
      * @return
      */
-    public Elemento resolver();
+    public Elemento resolver() throws Exception;
 }

@@ -11,8 +11,7 @@ import java.util.Iterator;
 import java.nio.file.Files;
 import java.nio.charset.Charset;
 
-import tahi.scanner.Tokenizer;
-import tahi.scanner.Token;
+import tahi.runtime.Runtime;
 
 public class Interpretador {
     public static void main(String[] args) {
@@ -21,21 +20,8 @@ public class Interpretador {
             System.exit(0);
         }
         try{
-            Tokenizer tok = new Tokenizer();
-            List<String> list = Files.readAllLines(new File(args[0]).toPath(), Charset.defaultCharset() );
-            List lista = tok.tokenizer(list);
-            Iterator it = lista.iterator();
-            while(it.hasNext()) {
-                List<Token> lista2 = (List<Token>) it.next();
-                System.out.print("\n");
-                for (Token t : lista2) {
-                    System.out.print(t.getClasse());
-                    System.out.print(" " + t.getConteudo().toString());
-                    System.out.print(",");
-                }
-                System.out.print("\n");
-            }
-            
+            Runtime rt = new Runtime(args[0]);   
+            rt.run();         
         }
         catch (Exception e) {
             System.out.println(e);
