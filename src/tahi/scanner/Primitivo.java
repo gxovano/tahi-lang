@@ -1,6 +1,6 @@
 package tahi.scanner;
 
-enum Primitivo {
+public enum Primitivo {
   Keyword,
   Variavel,
   Inteiro,

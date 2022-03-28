@@ -1,4 +1,4 @@
-package tahi.parser;
+package tahi.runtime;
 
 /**
  * Interface representando cada elemento em uma linha de comando.

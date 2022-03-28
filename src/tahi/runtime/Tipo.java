@@ -1,4 +1,4 @@
-package tahi.parser;
+package tahi.runtime;
 
 enum Tipo {
     Inteiro,

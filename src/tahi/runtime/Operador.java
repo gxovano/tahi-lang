@@ -1,4 +1,4 @@
-package tahi.parser;
+package tahi.runtime;
 
 public class Operador implements Elemento {
     private Variavel operando1;

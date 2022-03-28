@@ -3,7 +3,8 @@
 Utiliza-se o Apache Ant para buildar e pode-se utilizá-lo para executar. 
 
 Diretivas disponíveis:
-* ant run : compila as classes, builda o jar e executa-o com o argumento assets/ex1.tahi
+* ant run : executa, caso exista, o jar (Main.jar) em build/jar com o argumento assets/ex1.tahi
+* ant runDev : compila as classes, builda o jar e executa-o com o argumento assets/ex1.tahi
 * ant build : somente compila as classes
 * ant jar : compila as classes e builda o jar
 

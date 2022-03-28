@@ -1,4 +1,4 @@
-package tahi.parser;
+package tahi.runtime;
 
 public class Variavel implements Elemento{
     private Tipo tipo;

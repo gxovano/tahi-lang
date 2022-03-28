@@ -17,7 +17,7 @@ public class Tokenizer {
     this.pilhaCaracteres = new Stack<Character>();
   }
 
-  public List<List<Token>> tokenizer(List<String> source) throws Exception{
+  public List<List<Token>> tokenizer(List<String> source) throws Exception {
     Iterator it = source.iterator();
     List<List<Token>> s = new ArrayList<List<Token>>();
     int indiceLinha = 0;
@@ -34,7 +34,7 @@ public class Tokenizer {
     return s;
   }
 
-  private List<Token> processar(String instrucao) throws Exception{
+  private List<Token> processar(String instrucao) throws Exception {
     List<Token> lista = new ArrayList<Token>();               // Inicializa a lista de tokens da linha do fonte
     for(int i = 0; i < instrucao.length(); i++) {             // Para cada caracter da linha, executa as instruções do laço
       char c = instrucao.charAt(i);                           // -- Lê o caracter da vez na variável c
