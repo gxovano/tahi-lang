@@ -8,20 +8,23 @@ public class MaquinaEstado {
     public MaquinaEstado() {
         this.estado = Estado.Inicial;
     }
-    
-    private void shiftEstado() {
-
-    }
-
-    private void transicaoInicial() {
-
-    }
 
     public void transicao(Token t) {
+	switch (this.estado) {
+	  case Inicial:
+		this.transicaoInicial(t);
+	  break;
+	  default:
+	  break;	
+	}
+    }
+
+    private void transicaoInicial(Token t) {
 
     }
 
-    public void reset() {
 
+    public void reset() {
+	this.estado = Estado.Inicial;
     }
 }
