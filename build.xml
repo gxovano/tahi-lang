@@ -9,11 +9,13 @@
     <property name="file.jar">${dir.build.jar}/Main.jar</property>
     <!--<property name="dir.build.javadoc">${dir.build}/javadoc</property>-->
 
+    <!--
     <path id="projectClasspath">
         <fileset dir="lib">
             <include name="**.jar"/>
         </fileset>
     </path>
+    -->
 
     <target name="clean">
         <delete dir="${dir.build}"/>
