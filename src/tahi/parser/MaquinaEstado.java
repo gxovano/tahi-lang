@@ -1,19 +1,20 @@
 package tahi.parser;
 
-import java.util.Set;
+import java.util.Map;
 
+import tahi.runtime.Variavel;
 import tahi.scanner.Primitivo;
 import tahi.scanner.Token;
 
 public class MaquinaEstado {
     private Estado[] estado;
-    private Set<String> variaveis;
+    private Map<String,Variavel> variaveis;
 
     public MaquinaEstado(){
       this.estado = new Estado[] {Estado.Inicial,Estado.Inicial};
     }
 
-    public void transicao(Token t,Set<String> v) throws Exception{
+    public Estado transicao(Token t,Map<String,Variavel> v) throws Exception{
 
       this.variaveis = v;
 
@@ -33,8 +34,8 @@ public class MaquinaEstado {
         default:
         break;	
       }
-      
       this.variaveis = null;
+      return this.estado[1];
     }
 
     private Estado transicaoInicial(Token t) throws Exception{
@@ -42,9 +43,9 @@ public class MaquinaEstado {
         return Estado.Raw;
       //if( t.getClasse() == Primitivo.Operador && (this.estado[0] == Estado.Raw || this.estado[0] == Estado.Var))
       //  return Estado.Operador;
-      if( t.getClasse() == Primitivo.Variavel && this.variaveis.contains(t.getConteudo())) 
+      if( t.getClasse() == Primitivo.Variavel && this.variaveis.keySet().contains(t.getConteudo())) 
         return Estado.Var;
-      else if (!this.variaveis.contains(t.getConteudo()))
+      else if (!this.variaveis.keySet().contains(t.getConteudo()))
         throw new Exception("A variavel \"" + t.getConteudo() + "\" não foi instanciada ainda.");
       return Estado.Invalido;
     }
@@ -70,6 +71,15 @@ public class MaquinaEstado {
     private Estado transicaoOperador(Token t) {
 
       return null;
+    }
+
+    public boolean ehFinal() {
+      return this.estado[1] == Estado.Final;
+    }
+
+    public boolean ehValido() {
+      return this.estado[1] != Estado.Invalido && this.estado[1] != Estado.Inicial 
+        && this.estado[1] != Estado.Final;
     }
 
     private void shiftEstado(Estado novo) {

@@ -4,5 +4,7 @@ enum Estado {
     Inicial,
     Raw,
     Var,
-    Operador
+    Operador,
+    Invalido,
+    Final
 }

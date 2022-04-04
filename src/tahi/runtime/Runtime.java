@@ -45,8 +45,8 @@ public class Runtime {
         }
         // Aplicação do parser 
         for(List<Token> lista2 : lista){
-            par.parseLine(lista2,this.variaveisRuntime.keySet());
-            String[] result = par.runLine(this.variaveisRuntime.keySet());
+            par.parseLine(lista2,this.variaveisRuntime);
+            //String[] result = par.runLine(this.variaveisRuntime.keySet());
             if (result != null) {
 
             }

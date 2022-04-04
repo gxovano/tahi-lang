@@ -6,6 +6,7 @@ public class Operador implements Elemento {
     private Character operador;
     private Tipo resultante = null;
 
+
     public Operador(Character opo, Variavel opr1,Variavel opr2) {
         this.operador = opo;                // TODO Garantir que o operador esteja na lista da classe tahi.scanner.MaquinaEstado.operadores
         this.operando1 = opr1;
@@ -97,4 +98,24 @@ public class Operador implements Elemento {
         }
         return resultado;
     }
+
+    public void fillArgs(String value, String tipo) throws Exception{
+        Tipo mapTipo;
+        switch(tipo) {
+            case "Inteiro":
+                mapTipo = Tipo.Inteiro;
+            break;
+            case "Flutuante":
+                mapTipo = Tipo.Flutuante;
+            break;
+            case "String":
+                mapTipo = Tipo.String;
+            break;
+            default:
+                throw new Exception("O tipo Raw não é compatível com os tipos suportados pela classe Variavel");
+        }
+        Variavel v = new Variavel(value, mapTipo);
+    }
+
+
 }
